@@ -44,7 +44,7 @@ namespace Web.Api.Controllers
         [HttpPut]
         public async Task<ActionResult<List<Product>>> UpdateProduct(Product productToEdit)
         {
-            var product = await context.Products.FindAsync(productToEdit.Id);
+            var product = await context.Products.FirstOrDefaultAsync(productToEdit.Id);
             if (product == null)
                 return BadRequest($"No such product with id {productToEdit.Id}");
 
@@ -60,7 +60,7 @@ namespace Web.Api.Controllers
         [HttpDelete("id")]
         public async Task<ActionResult<List<Product>>> DeleteProduct(int Id)
         {
-            var product = await context.Products.FindAsync(Id);
+            var product = await context.Products.FirstOrDefaultAsync(Id);
             if (product == null)
                 return BadRequest($"No such product with id {Id}");
 
