@@ -44,7 +44,7 @@ namespace Web.Api.Controllers
         [HttpPut]
         public async Task<ActionResult<List<Product>>> UpdateProduct(Product productToEdit)
         {
-            var product = await context.Products.FirstOrDefaultAsync(productToEdit.Id);
+            var product = await context.Products.FirstOrDefaultAsync(p => p.Id == productToEdit.Id);
             if (product == null)
                 return BadRequest($"No such product with id {productToEdit.Id}");
 
